@@ -7,43 +7,33 @@ const answers = [
 ];
 const correct = 'グルタミン酸';
 
-//定数の文字列をHTMLに反映させる
-document.getElementById('js-question').textContent = question;
-
 const $button = document.getElementsByTagName('button');
-
-let buttonIndex = 0;
-let buttonLength = $button.length;
-while(buttonIndex < buttonLength) {
-  $button[buttonIndex].textContent = answers[buttonIndex];
-  buttonIndex++;
+const buttonLength = $button.length; 
+//クイズの問題文、選択肢を定義
+const setupQuiz = () => {
+  document.getElementById('js-question').textContent = question;
+  let buttonIndex = 0;
+  while(buttonIndex < buttonLength) {
+    $button[buttonIndex].textContent = answers[buttonIndex];
+    buttonIndex++;
+  }
 }
+
+setupQuiz();
+
+const clickHandler = (e) => {
+  if(correct === e.target.textContent){
+    window.alert('正解!');
+  } else {
+    window.alert('不正解!');
+  }
+};
+
 //ボタンをクリックしたら正誤判定
-document.getElementsByTagName('button')[0].addEventListener('click', () => {
-  if(correct === $button[0].textContent){
-    window.alert('正解!');
-  } else {
-    window.alert('不正解!');
-  }
-});
-document.getElementsByTagName('button')[1].addEventListener('click', () => {
-  if(correct === $button[1].textContent){
-    window.alert('正解!');
-  } else {
-    window.alert('不正解!');
-  }
-});
-document.getElementsByTagName('button')[2].addEventListener('click', () => {
-  if(correct === $button[2].textContent){
-    window.alert('正解!');
-  } else {
-    window.alert('不正解!');
-  }
-});
-document.getElementsByTagName('button')[3].addEventListener('click', () => {
-  if(correct === $button[3].textContent){
-    window.alert('正解!');
-  } else {
-    window.alert('不正解!');
-  }
-});
+let handlerIndex = 0;
+while(handlerIndex < buttonLength) {
+  $button[handlerIndex].addEventListener('click', (e) => {
+    clickHandler(e);
+  });
+  handlerIndex++;
+}
