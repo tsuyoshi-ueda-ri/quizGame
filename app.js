@@ -7,4 +7,4 @@ const answer = [
 ];
 const correct = 'グルタミン酸';
 
-document.getElementById('js-question').textContent = 'Question';
+document.getElementById('js-question').textContent = question;
